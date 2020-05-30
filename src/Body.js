@@ -23,10 +23,16 @@ const Body = () => {
             </div>
             <div className="container role">
               <li>{element.position}</li>
-              
-        <li><span className='languages'>{element.role}{' '}{element.level}{element.languages.map((e) =>{ 
-              return e ;
-             })}</span></li>
+
+              <li>
+                <span className="languages">
+                  <div className="language">{element.role} </div>
+                  <div className="language">{element.level}</div>
+                  {element.languages.map((e ,i ) => {
+                    return <div key={i} className="language">{e}</div>;
+                  })}
+                </span>
+              </li>
             </div>
 
             <div className="container">
