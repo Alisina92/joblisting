@@ -1,5 +1,7 @@
+ 
 .App {
   text-align: center;
+   
 }
 
 .App-logo {
@@ -26,6 +28,51 @@
 
 .App-link {
   color: #61dafb;
+}
+
+ .header{
+   background-color: turquoise;
+   
+ }
+
+body{
+  background-color: rgb(177, 223, 219);
+}
+
+ div{
+   white-space: pre-wrap;
+}
+ .ul{
+   background-color: white;
+   list-style-type: none;
+   margin-left: 70px;
+   margin-right: 70px;
+   padding: 40px;
+  }
+  .container{
+     display: flex;
+     margin: 15px;
+
+      
+  }
+   
+.img{
+  position: relative;
+  float: left;
+  clear: left;
+  margin: 20px;
+  bottom:10px;
+  }
+.role{
+  font-weight: bold;
+   display: flex;
+   justify-content: space-between;
+   
+}
+.languages{
+   background-color: rgb(177, 223, 219);
+  color: white;
+  margin: 5px;
 }
 
 @keyframes App-logo-spin {
