@@ -1,10 +1,38 @@
-import React from "react";
-import jobData from "./data.json";
+import React,{useState} from "react";
+import jData from "./data.json";
+ import Languages from './Languages';
 
-const Body = () => {
-  return (
-    <div>
-      {jobData.map((element) => {
+ const Body = (props) => {
+      const [searchClass ,setSearchClass]=useState('displayClass');
+      const [tagHolder, setTagHolder] = useState(null);
+      //const [tagRole, setTagRole] = useState(null);
+       const filterTag= (language)=>{
+         setSearchClass('blockClass')
+         setTagHolder(language)
+           const filteredJob = jData.filter(job=>{
+               return job.languages.includes(language);  
+          })
+        
+          props.setTagSorter(filteredJob);
+       
+        }
+         const clearSearch =()=>{
+            setSearchClass('displayClass')
+           props.setTagSorter(jData);
+          }
+         //const changeHandle = () => {
+           //filterTag(tagRole);
+           //console.log(tagRole)
+         //};
+
+        return (
+          <div>
+            <div className ={`tagHolder ${searchClass}`}>
+              {tagHolder}
+              <p onClick={clearSearch}>Clear</p>
+            </div>
+       {props.jobData.map((element) => {
+         //setTagRole(element.role)
         return (
           <ul key={element.id} className="ul">
             <li>
@@ -26,10 +54,21 @@ const Body = () => {
 
               <li>
                 <span className="languages">
-                  <div className="language">{element.role} </div>
-                  <div className="language">{element.level}</div>
-                  {element.languages.map((e ,i ) => {
-                    return <div key={i} className="language">{e}</div>;
+                  <div  className="language">
+                    {element.role}{" "}
+                  </div>
+                  <div  className="language">
+                    {element.level}
+                  </div>
+                  {element.languages.map((e, i) => {
+                    return (
+                      <Languages
+                        key={i}
+                        e={e}
+                        index={i}
+                        filterTag={filterTag}
+                      />
+                    );
                   })}
                 </span>
               </li>

@@ -75,7 +75,17 @@ div {
   color: white;
   margin: 5px;
 }
-
+ .tagHolder{
+   background-color: white;
+   height: 20px;
+ }
+ 
+ .displayClass{
+    display: none;
+ }
+ .blockClass{
+   display: block;
+ }
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

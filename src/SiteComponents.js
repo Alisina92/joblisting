@@ -1,14 +1,16 @@
-import React from'react';
-import Header from'./Header';
-import Body from'./Body';
+import React,{useState} from "react";
+import jobData from "./data.json";
+import Header from "./Header";
+import Body from "./Body";
 
-
-const SiteComponents=()=>{
-    return(
-        <div><Header/><Body/></div>
-
-    )
-}
-
+const SiteComponents = () => {
+  const [tagSorter, setTagSorter] = useState(jobData);
+  return (
+    <div>
+      <Header />
+      <Body jobData={tagSorter} setTagSorter={setTagSorter} />
+    </div>
+  );
+};
 
 export default SiteComponents;
