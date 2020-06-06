@@ -5,12 +5,13 @@ import jData from "./data.json";
  const Body = (props) => {
       const [searchClass ,setSearchClass]=useState('displayClass');
       const [tagHolder, setTagHolder] = useState(null);
-      //const [tagRole, setTagRole] = useState(null);
+   
+    
        const filterTag= (language)=>{
          setSearchClass('blockClass')
          setTagHolder(language)
            const filteredJob = jData.filter(job=>{
-               return job.languages.includes(language);  
+               return job.languages.includes(language) || job.role.includes(language) || job.level.includes(language);  
           })
         
           props.setTagSorter(filteredJob);
@@ -20,19 +21,21 @@ import jData from "./data.json";
             setSearchClass('displayClass')
            props.setTagSorter(jData);
           }
-         //const changeHandle = () => {
-           //filterTag(tagRole);
-           //console.log(tagRole)
-         //};
-
-        return (
-          <div>
+        
+         const newArr =[]
+         console.log(newArr);
+         return (
+           <div>
             <div className ={`tagHolder ${searchClass}`}>
               {tagHolder}
               <p onClick={clearSearch}>Clear</p>
             </div>
        {props.jobData.map((element) => {
-         //setTagRole(element.role)
+           let allTags =[];
+            allTags.push(element.role)
+            allTags.push(element.level);
+           newArr.push(allTags)
+          
         return (
           <ul key={element.id} className="ul">
             <li>
@@ -54,22 +57,24 @@ import jData from "./data.json";
 
               <li>
                 <span className="languages">
-                  <div  className="language">
-                    {element.role}{" "}
-                  </div>
-                  <div  className="language">
-                    {element.level}
-                  </div>
+                 
+                  
                   {element.languages.map((e, i) => {
-                    return (
-                      <Languages
-                        key={i}
-                        e={e}
-                        index={i}
+                     allTags.push(e)
+                     
+                  })}
+                    {allTags.map((el,i)=>{
+                      return(<Languages
+                        
+                        e={el}
+                       
                         filterTag={filterTag}
                       />
-                    );
-                  })}
+                      )
+
+                    })}
+                    
+                 
                 </span>
               </li>
             </div>
